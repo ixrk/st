@@ -5,7 +5,7 @@
  *
  * font: see http://freedesktop.org/software/fontconfig/fontconfig-user.html
  */
-static char *font = "Liberation Mono:pixelsize=12:antialias=true:autohint=true";
+static char *font = "monospace:size=11";
 static int borderpx = 2;
 
 /*
@@ -32,7 +32,7 @@ static float chscale = 1.0;
  *
  * More advanced example: L" `'\"()[]{}"
  */
-wchar_t *worddelimiters = L" ";
+wchar_t *worddelimiters = L" `'\"()[]{}";
 
 /* selection timeouts (in milliseconds) */
 static unsigned int doubleclicktimeout = 300;
@@ -43,7 +43,7 @@ int allowaltscreen = 1;
 
 /* frames per second st should at maximum draw to the screen */
 static unsigned int xfps = 120;
-static unsigned int actionfps = 30;
+static unsigned int actionfps = 60;
 
 /*
  * blinking timeout (set to 0 to disable blinking) for the terminal blinking
@@ -85,30 +85,32 @@ unsigned int tabspaces = 8;
 /* Terminal colors (16 first used in escape sequence) */
 static const char *colorname[] = {
 	/* 8 normal colors */
-	"black",
-	"red3",
-	"green3",
-	"yellow3",
-	"blue2",
-	"magenta3",
-	"cyan3",
-	"gray90",
+	[0] = "#231f20", /* black   */
+	[1] = "#ee2e24", /* red     */
+	[2] = "#00853e", /* green   */
+	[3] = "#ffd204", /* yellow  */
+	[4] = "#009ddc", /* blue    */
+	[5] = "#98005d", /* magenta */
+	[6] = "#85cebc", /* cyan    */
+	[7] = "#d9d8d8", /* white   */
 
 	/* 8 bright colors */
-	"gray50",
-	"red",
-	"green",
-	"yellow",
-	"#5c5cff",
-	"magenta",
-	"cyan",
-	"white",
+	[8]  = "#737171", /* black   */
+	[9]  = "#ee2e24", /* red     */
+	[10] = "#00853e", /* green   */
+	[11] = "#ffd204", /* yellow  */
+	[12] = "#009ddc", /* blue    */
+	[13] = "#98005d", /* magenta */
+	[14] = "#85cebc", /* cyan    */
+	[15] = "#ffffff", /* white   */
+
+	/* special colors */
+	[256] = "#231f20", /* background */
+	[257] = "#d9d8d8", /* foreground */
 
 	[255] = 0,
 
 	/* more colors can be added after 255 to use with DefaultXX */
-	"#cccccc",
-	"#555555",
 };
 
 
@@ -116,10 +118,10 @@ static const char *colorname[] = {
  * Default colors (colorname index)
  * foreground, background, cursor, reverse cursor
  */
-unsigned int defaultfg = 7;
-unsigned int defaultbg = 0;
-static unsigned int defaultcs = 256;
-static unsigned int defaultrcs = 257;
+unsigned int defaultfg = 257;
+unsigned int defaultbg = 256;
+static unsigned int defaultcs = 257;
+static unsigned int defaultrcs = 256;
 
 /*
  * Default shape of cursor
@@ -128,14 +130,14 @@ static unsigned int defaultrcs = 257;
  * 6: Bar ("|")
  * 7: Snowman ("☃")
  */
-static unsigned int cursorshape = 2;
+static unsigned int cursorshape = 6;
 
 /*
  * Default columns and rows numbers
  */
 
-static unsigned int cols = 80;
-static unsigned int rows = 24;
+static unsigned int cols = 119;
+static unsigned int rows = 53;
 
 /*
  * Default colour and shape of the mouse cursor
@@ -190,6 +192,8 @@ static Shortcut shortcuts[] = {
 	{ TERMMOD,              XK_Num_Lock,    numlock,        {.i =  0} },
 	{ ShiftMask,            XK_Page_Up,     kscrollup,      {.i = -1} },
 	{ ShiftMask,            XK_Page_Down,   kscrolldown,    {.i = -1} },
+	{ ShiftMask,            XK_Up,          kscrollup,      {.i =  1} },
+	{ ShiftMask,            XK_Down,        kscrolldown,    {.i =  1} },
 };
 
 /*
