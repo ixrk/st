@@ -5,7 +5,7 @@
  *
  * font: see http://freedesktop.org/software/fontconfig/fontconfig-user.html
  */
-static char *font = "Liberation Mono:pixelsize=12:antialias=true:autohint=true";
+static char *font = "mono:size=11";
 static int borderpx = 2;
 
 /*
@@ -34,7 +34,7 @@ static float chscale = 1.0;
  *
  * More advanced example: L" `'\"()[]{}"
  */
-wchar_t *worddelimiters = L" ";
+wchar_t *worddelimiters = L" `'\"()[]{}";
 
 /* selection timeouts (in milliseconds) */
 static unsigned int doubleclicktimeout = 300;
@@ -96,24 +96,24 @@ unsigned int tabspaces = 8;
 /* Terminal colors (16 first used in escape sequence) */
 static const char *colorname[] = {
 	/* 8 normal colors */
-	"black",
-	"red3",
-	"green3",
-	"yellow3",
-	"blue2",
-	"magenta3",
-	"cyan3",
-	"gray90",
+    "#231f20", /* black   */
+    "#ee2e24", /* red     */
+    "#00853e", /* green   */
+    "#ffd204", /* yellow  */
+    "#009ddc", /* blue    */
+    "#98005d", /* magenta */
+    "#85cebc", /* cyan    */
+    "#d9d8d8", /* white   */
 
 	/* 8 bright colors */
-	"gray50",
-	"red",
-	"green",
-	"yellow",
-	"#5c5cff",
-	"magenta",
-	"cyan",
-	"white",
+    "#737171", /* black   */
+    "#ee2e24", /* red     */
+    "#00853e", /* green   */
+    "#ffd204", /* yellow  */
+    "#009ddc", /* blue    */
+    "#98005d", /* magenta */
+    "#85cebc", /* cyan    */
+    "#ffffff", /* white   */
 
 	[255] = 0,
 
